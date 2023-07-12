@@ -1,0 +1,36 @@
+<h2>Informations du projet</h2>
+<form [formGroup]="projectInfoForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="ownership">Êtes-vous propriétaire ou locataire ?</label>
+    <select id="ownership" formControlName="ownership">
+      <option value="">Sélectionner</option>
+      <option value="true">Propriétaire</option>
+      <option value="false">Locataire</option>
+    </select>
+    <div *ngIf="projectInfoForm.get('ownership')?.invalid && projectInfoForm.get('ownership')?.touched">
+      Veuillez sélectionner une option.
+    </div>
+  </div>
+  <div>
+    <label for="householdSize">Nombre de personnes dans le foyer :</label>
+    <input type="number" id="householdSize" formControlName="householdSize">
+    <div *ngIf="projectInfoForm.get('householdSize')?.invalid && projectInfoForm.get('householdSize')?.touched">
+      Veuillez saisir le nombre de personnes dans le foyer.
+    </div>
+  </div>
+  <div>
+    <label for="income">Revenus du foyer (entre 10k et 100k) :</label>
+    <input type="number" id="income" formControlName="income">
+    <div *ngIf="projectInfoForm.get('income')?.invalid && projectInfoForm.get('income')?.touched">
+      Veuillez saisir des revenus compris entre 10 000 et 100 000.
+    </div>
+  </div>
+  <div>
+    <label for="surface">Surface du bien (m²) :</label>
+    <input type="number" id="surface" formControlName="surface">
+    <div *ngIf="projectInfoForm.get('surface')?.invalid && projectInfoForm.get('surface')?.touched">
+      Veuillez saisir la surface du bien.
+    </div>
+  </div>
+  <button type="submit" [disabled]="projectInfoForm.invalid">Suivant</button>
+</form>

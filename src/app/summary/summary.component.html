@@ -1,0 +1,18 @@
+<h2>Récapitulatif</h2>
+<ng-container *ngIf="personalInfo">
+  <p>Merci {{ personalInfo.gender }} {{ personalInfo.lastName }} {{ personalInfo.firstName }}</p>
+  <ng-container *ngIf="projectInfo.ownership === 'true'">
+    <p>Coût du projet : {{ projectCost }} euros</p>
+    <ng-container *ngIf="effyAidAmount > 0; else notEligible">
+      <p>Montant de l'aide Effy : {{ effyAidAmount }} euros</p>
+      <p>Félicitations ! Vous êtes éligible à notre programme d'aides et d'accompagnement.</p>
+    </ng-container>
+    <ng-template #notEligible>
+      <p>Vous n'êtes pas éligible à notre programme d'aides.</p>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngIf="projectInfo.ownership === 'false'">
+    <p>Vous n'êtes pas propriétaire et n'êtes donc pas éligible à notre programme d'aides.</p>
+  </ng-container>
+  <button (click)="goBack()">Retour</button>
+</ng-container>
